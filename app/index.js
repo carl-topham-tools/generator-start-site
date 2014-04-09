@@ -30,10 +30,43 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
     var prompts = [{
       name: 'siteName',
       message: 'What do you want to call your blog?'
-    }];
+    }
+
+
+    ,{
+    name: 'nameSpace',
+    message: 'Unique name-space for the project (alphanumeric)?',
+    default: function( answers ) {
+        return answers.siteName.replace(/\W/g, '').toLowerCase();
+      }
+    }
+
+    ,{
+    type: 'list',
+    name: 'whichReset',
+    message: 'Which reset would you like to use?',
+    choices: ['reset','normalize', 'none']
+    }
+
+
+    ];
 
     this.prompt(prompts, function (props) {
       this.siteName = props.siteName;
+      this.nameSpace = props.nameSpace;
+      this.whichReset = props.whichReset;
+
+
+      if (props.whichReset == "normalize" ) {
+          this.whichReset = "@import 'core/normalize';";
+      } else if (props.whichReset == "reset") {
+          this.whichReset = "@import 'core/reset';";
+      } else {
+          this.whichReset = "";
+      }
+ 
+
+
 
       done();
     }.bind(this));
@@ -41,7 +74,9 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
 
   app: function () {
     var context = { 
-        site_name: this.siteName 
+        site_name: this.siteName,
+        site_nameSpace: this.nameSpace,
+        css_reset: this.whichReset
     };
 
     //make folder for the task runners
@@ -52,11 +87,21 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
     this.mkdir('dev');
     this.mkdir('dev/src');
 
-    //copy framework across
-    this.directory('frameworks/scss', 'dev/src/scss');
-
     //make the static folder
     this.mkdir('dev/static');
+
+    //copy framework/base js across
+    this.directory('frameworks/js', 'dev/static/js');
+
+    //build sass dirs so I can process templates
+    this.directory('frameworks/scss/modules', 'dev/src/scss/modules');
+    this.directory('frameworks/scss/core', 'dev/src/scss/core');
+    this.directory('frameworks/scss/constructors', 'dev/src/scss/constructors');
+    
+    this.template('frameworks/scss/_variables.scss', 'dev/src/scss/_variables.scss', context);
+    this.template('frameworks/scss/style.scss', 'dev/src/scss/style.scss', context);
+
+    
 
     
     this.template('_package.json', 'tasks/package.json', context);

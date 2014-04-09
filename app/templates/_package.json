@@ -1,5 +1,5 @@
 {
-  "name": "<%= site_name %>",
+  "name": "<%= site_nameSpace %>",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "~0.4.1",

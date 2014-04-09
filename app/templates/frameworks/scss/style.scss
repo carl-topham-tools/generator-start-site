@@ -1,15 +1,16 @@
-/* a comment */
+//Load the site variables
+@import 'variables';
 
 
-* {
-	display: none;
-}
+//load anything that is used to create other elements
+@import 'constructors/functions';
 
-html {
-	display: block;
-}
+//build the core layout of the site - eg resets, floats, grids
+//load nothing with placeholders before the reset, or they will override it!
+<%= css_reset %>
+
+//create modules for things like nav, content
+@import 'modules/example';
 
 
-body {
-	color: red;
-}
+//maybe use a theme here if you really want!
