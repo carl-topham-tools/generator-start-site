@@ -1,46 +1,67 @@
-# generator-start-site [![Build Status](https://secure.travis-ci.org/Designer023/generator-start-site.png?branch=master)](https://travis-ci.org/Designer023/generator-start-site)
+# generator-start-site
 
-> [Yeoman](http://yeoman.io) generator
+> A [Yeoman](http://yeoman.io) generator that creates a basic site template with grunt setup ready for development and distribution.
+
+## Includes
+
+- Grunt setup for sass and distribution
+- Sass project scafolding. As minimal as possible.
+- jQuery & Modernizer (using Bower package manager) so you can get working straight way.
+- index.html so you can start building your site template asap.
 
 
 ## Getting Started
 
-### What is Yeoman?
+### Requirements
+- Yeoman
+- Bower
+- Grunt
+- Sass
 
-Trick question. It's not a thing. It's this guy:
+#### Yeoman, Grunt & Bower (Best buddies!)
 
-![](http://i.imgur.com/JHaAlBJ.png)
+Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.* If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```
-$ npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-start-site from npm, run:
 
 ```
-$ npm install -g generator-start-site
+npm install -g yo
 ```
 
-Finally, initiate the generator:
+### Installing the start-site generator
+
+To install generator-start-site, clone this repo. inside the repo folder run:
 
 ```
-$ yo start-site
+npm link
 ```
 
-### Getting To Know Yeoman
+When you want to create a new site simply create a folder and inside run:
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+```
+yo start-site
+```
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+Answer the questions and Yeoman will sort you out!
 
+
+## Basic workflow
+
+Grunt lives in the tasks folder. Navigate to this folder and run (Stop grunt watch running using cmd + c):
+
+```
+grunt watch
+```
+
+Any changes you make to the 'dev/src/scss' files will be compiled into the 'dev/static/css' folder.
+
+Once your site is ready to go run:
+
+
+```
+grunt dist
+```
+
+Grunt will process all your sass, minify and copy it, concatonate and minify your js to the header and footer scripts (pre & post) and copy and html files across to the dist folder. You can the FTP or copy your dist folder to where ever you want. It's all self contained.
 
 ## License
 
