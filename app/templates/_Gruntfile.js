@@ -116,7 +116,13 @@ module.exports = function(grunt) {
     //Dist production
     copy: {
       dist: {
-        files: [ {src: '../dev/index.html', dest: '../dist/index.html'} ]
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['../dev/*.html'],
+          dest: '../dist/',
+          filter: 'isFile'
+        }]
       }
     },
 
@@ -124,11 +130,13 @@ module.exports = function(grunt) {
       options: {
         dest: '../dist'
       },
-      html: '../dev/index.html'
+      //html: '../dev/index.html'
+      src: ['../dev/*.html'],
     },
 
     usemin: {
-      html: ['../dist/index.html']
+      //html: ['../dist/index.html']
+      html : '../dist/*.html'
     },
     // end Dist production  
 

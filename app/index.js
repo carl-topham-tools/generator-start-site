@@ -4,14 +4,28 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 
+//['Beer', 'Cake', 'Tea', 'Coffee', 'Kittens', 'Puppies', 'Unicorns', 'Nyan Cat' , 'None of the above']
+var choice_map = {
+  'Beer': "Go grab a cold one!",
+  'Cake': "Nom nom nom!",
+  'Tea' : "Go grab a brew!",
+  'Coffee' : "Go grab a brew!"
+}
+
+var choice_list = [];
+
+for (var key in choice_map) {
+  if (choice_map.hasOwnProperty(key)) {
+    choice_list.push(key);
+  }
+}
 
 var StartSiteGenerator = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
-    
-
+  
     this.on('end', function () {
-      process.chdir("tasks/");
+      process.chdir(this.nameSpace+"/tasks/");
       if (!this.options['skip-install']) {
         this.installDependencies();
       }
@@ -29,7 +43,7 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
 
     var prompts = [{
       name: 'siteName',
-      message: 'What do you want to call your blog?'
+      message: 'What do you want to call your site?'
     }
 
 
@@ -48,13 +62,17 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
     choices: ['reset','normalize', 'none']
     }
 
-
-    ];
-
+    ,{
+    type: 'list',
+    name: 'likes',
+    message: 'What is your favorite?',
+    choices: choice_list
+    }]
+    
     this.prompt(prompts, function (props) {
       this.siteName = props.siteName;
       this.nameSpace = props.nameSpace;
-      this.whichReset = props.whichReset;
+//      this.whichReset = props.whichReset;
 
 
       if (props.whichReset == "normalize" ) {
@@ -64,8 +82,12 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
       } else {
           this.whichReset = "";
       }
- 
 
+      if (choice_map[props.whichReset] !== undefined) {
+        this.likes = choice_map[props.whichReset];
+      } else {
+        this.likes = '';
+      }
 
 
       done();
@@ -78,52 +100,54 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
         site_nameSpace: this.nameSpace,
         css_reset: this.whichReset
     };
+    //make site folder
+    this.mkdir(this.nameSpace);
 
     //make folder for the task runners
-    this.mkdir('tasks');
+    this.mkdir(this.nameSpace+'/tasks');
 
     //make folderd for the content
-    this.mkdir('dist');
-    this.mkdir('dev');
-    this.mkdir('dev/src');
+    this.mkdir(this.nameSpace+'/dist');
+    this.mkdir(this.nameSpace+'/dev');
+    this.mkdir(this.nameSpace+'/dev/src');
 
     //make the static folder
-    this.mkdir('dev/static');
+    this.mkdir(this.nameSpace+'/dev/static');
 
     //copy framework/base js across
-    this.directory('frameworks/js', 'dev/static/js');
+    this.directory('frameworks/js', this.nameSpace+'/dev/static/js');
 
     //build sass dirs so I can process templates
-    this.directory('frameworks/scss/modules', 'dev/src/scss/modules');
-    this.directory('frameworks/scss/core', 'dev/src/scss/core');
-    this.directory('frameworks/scss/constructors', 'dev/src/scss/constructors');
+    this.directory('frameworks/scss/modules', this.nameSpace+'/dev/src/scss/modules');
+    this.directory('frameworks/scss/core', this.nameSpace+'/dev/src/scss/core');
+    this.directory('frameworks/scss/constructors', this.nameSpace+'/dev/src/scss/constructors');
     
-    this.template('frameworks/scss/_variables.scss', 'dev/src/scss/_variables.scss', context);
-    this.template('frameworks/scss/style.scss', 'dev/src/scss/style.scss', context);
+    this.template('frameworks/scss/_variables.scss', this.nameSpace+'/dev/src/scss/_variables.scss', context);
+    this.template('frameworks/scss/style.scss', this.nameSpace+'/dev/src/scss/style.scss', context);
 
     
 
     
-    this.template('_package.json', 'tasks/package.json', context);
+    this.template('_package.json', this.nameSpace+'/tasks/package.json', context);
 
     //bower setup
-    this.template('_.bowerrc', 'tasks/.bowerrc', context);
-    this.template('_bower.json', 'tasks/bower.json', context);
+    this.template('_.bowerrc', this.nameSpace+'/tasks/.bowerrc', context);
+    this.template('_bower.json', this.nameSpace+'/tasks/bower.json', context);
 
 
     //copy grunt setup
-    this.template("_Gruntfile.js", "tasks/Gruntfile.js", context);
+    this.template("_Gruntfile.js", this.nameSpace+"/tasks/Gruntfile.js", context);
     
 
 
     //setup base html files
-    this.template("_index.html", "dev/index.html", context);
+    this.template("_index.html", this.nameSpace+"/dev/index.html", context);
 
   },
 
   projectfiles: function () {
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
+    this.copy('editorconfig', this.nameSpace+'/.editorconfig');
+    this.copy('jshintrc', this.nameSpace+'/.jshintrc');
   }
 });
 
