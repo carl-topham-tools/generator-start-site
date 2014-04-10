@@ -29,10 +29,11 @@ npm install -g yo
 
 ### Installing the start-site generator
 
-To install generator-start-site, clone this repo. inside the repo folder run:
+To install generator-start-site, run:
 
 ```
-npm link
+npm install -g generator-start-site
+#Lots of code will happen... This is npm installing what it needs
 ```
 
 When you want to create a new site simply run:
