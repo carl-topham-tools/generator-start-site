@@ -166,7 +166,7 @@ module.exports = function(grunt) {
 
       distDone: {
         options: {
-          title: '<%= like_text %>' ,  // optional
+          title: "<%= like_text %>" ,  // optional
           message: "<%= site_name %> is ready to be distributed 👊", //needed escaping!
         }
       },
