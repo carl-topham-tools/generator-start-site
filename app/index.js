@@ -6,10 +6,12 @@ var chalk = require('chalk');
 
 //['Beer', 'Cake', 'Tea', 'Coffee', 'Kittens', 'Puppies', 'Unicorns', 'Nyan Cat' , 'None of the above']
 var choice_map = {
-  'Beer': "Go grab a cold one!",
-  'Cake': "Nom nom nom!",
-  'Tea' : "Go grab a brew!",
-  'Coffee' : "Go grab a brew!"
+  'Beer': "🍺 mmmmm Beer!",
+  'Cake': "🍰 Nom nom nom!",
+  'Tea' : "☕️ Grab a brew!",
+  'Coffee' : "☕️ Frappé-latté-chino time!",
+  'Kittens' : "🐯 Purr!!",
+  'Nyan Cat' : "🌈 Done Makin' rainbows!!",
 }
 
 var choice_list = [];
@@ -65,7 +67,7 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
     ,{
     type: 'list',
     name: 'likes',
-    message: 'What is your favorite?',
+    message: 'Which is your favorite? (This is so important)',
     choices: choice_list
     }]
     
@@ -83,10 +85,10 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
           this.whichReset = "";
       }
 
-      if (choice_map[props.whichReset] !== undefined) {
-        this.likes = choice_map[props.whichReset];
+      if (choice_map[props.likes] !== undefined) {
+        this.likes = choice_map[props.likes];
       } else {
-        this.likes = '';
+        this.likes = 'hello null';
       }
 
 
@@ -98,7 +100,8 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
     var context = { 
         site_name: this.siteName,
         site_nameSpace: this.nameSpace,
-        css_reset: this.whichReset
+        css_reset: this.whichReset,
+        like_text: this.likes
     };
     //make site folder
     this.mkdir(this.nameSpace);

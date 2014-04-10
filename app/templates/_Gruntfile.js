@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         watch: {
           css: {
             files: '../dev/src/scss/**/*.scss',
-            tasks: ['sass:dev', 'autoprefixer', 'notify:done' ],
+            tasks: ['sass:dev', 'autoprefixer', 'notify:sassDone' ],
             options: {
               livereload: true,
             },
@@ -156,6 +156,33 @@ module.exports = function(grunt) {
           message: 'Whatever you were doing is done!', //required
         }
       },
+
+      distStart: {
+        options: {
+          title: '🎁 Prepping for distribution!',  // optional
+          message: 'Get ready for the awesome...', //required
+        }
+      },
+
+      distDone: {
+        options: {
+          title: '<%= like_text %>' ,  // optional
+          message: "<%= site_name %> is ready to be distributed 👊", //needed escaping!
+        }
+      },
+
+
+      sassDone: {
+        options: {
+          title: '🎉 Ta-da!!!' ,  // optional
+          message: 'Sass has compiled successfully 😊', //required
+        }
+      },
+
+
+
+
+
     }
 
 
@@ -174,7 +201,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-usemin');
 
-    grunt.registerTask('dist', ['useminPrepare', 'copy', 'concat', 'uglify', 'usemin', 'sass:dist', 'autoprefixer', 'cssmin', 'notify:done']);
+    grunt.registerTask('dist', ['notify:distStart', 'useminPrepare', 'copy', 'concat', 'uglify', 'usemin', 'sass:dist', 'autoprefixer', 'cssmin', 'notify:distDone']);
 
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
