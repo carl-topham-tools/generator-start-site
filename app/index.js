@@ -109,7 +109,7 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
     //make folder for the task runners
     this.mkdir(this.nameSpace+'/tasks');
 
-    //make folderd for the content
+    //make folders for the content
     this.mkdir(this.nameSpace+'/dist');
     this.mkdir(this.nameSpace+'/dev');
     this.mkdir(this.nameSpace+'/dev/src');

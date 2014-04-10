@@ -35,7 +35,7 @@ To install generator-start-site, clone this repo. inside the repo folder run:
 npm link
 ```
 
-When you want to create a new site simply create a folder and inside run:
+When you want to create a new site simply run:
 
 ```
 yo start-site
@@ -49,19 +49,43 @@ Answer the questions and Yeoman will sort you out!
 Grunt lives in the tasks folder. Navigate to this folder and run (Stop grunt watch running using cmd + c):
 
 ```
+#ignore this if your in the 'tasks' folder already
+cd /yourproject/tasks/
+
+#run
 grunt watch
 ```
 
-Any changes you make to the 'dev/src/scss' files will be compiled into the 'dev/static/css' folder.
+Your HTML templates and css/scss live in the dev folder. Any changes you make to the 'dev/src/scss' files will be compiled into the 'dev/static/css' folder. you can make as many HTML file as you need in the dev folder - they will all be copied to the dist folder when you're ready to go live!
 
-Once your site is ready to go run:
+Once your site is ready to go live you will need to run:
 
 
 ```
+#ignore this if your in the 'tasks' folder already
+cd /yourproject/tasks/  
+
+#run
 grunt dist
 ```
 
 Grunt will process all your sass, minify and copy it, concatonate and minify your js to the header and footer scripts (pre & post) and copy and html files across to the dist folder. You can the FTP or copy your dist folder to where ever you want. It's all self contained.
+
+
+## Template hints
+
+In the included index.html you will see:
+
+```
+ <!-- build:js static/js/pre.js -->
+  <script src="static/js/header.js"></script>
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
+```
+
+When you run your distribution grunt will optimize all the files between the comments into one javascipt file. If you have a specific group of javascipts for one page (eg a gallery and slider) put them between a new set of comments and you'll get the extra javascript. If it's in the same comment block then it might get overwritten when it compiles! Wrap all js in a comment tag if it's not in the provided blocks. Grunt will take care of the rest for you! :-)
+
+
 
 ## License
 
