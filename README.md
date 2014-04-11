@@ -22,12 +22,46 @@
 
 Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.* If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
+## Installing the start-site generator requirements
+
+Some of the following code may need a 'sudo' before it to work depending on your setup.
+
+Install Sass
+
+```
+gem install sass
+```
+
+Install Node.js from http://nodejs.org/
+
+- If you get some errors after this it mightbe that your node packages are out of date. 
+
+```
+#Try this if you get some poackage errors
+npm cache clean
+#Followed by
+npm update 
+```
+
+Install Bower
+```
+npm install -g bower
+```
+
+Install the Grunt CLI (Command line interface)
+```
+npm install -g grunt-cli
+```
+
+Install Yeoman
 
 ```
 npm install -g yo
 ```
 
-### Installing the start-site generator
+##Install the generator
+
+(See above for all the )
 
 To install generator-start-site, run:
 
