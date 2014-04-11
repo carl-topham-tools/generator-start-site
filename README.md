@@ -34,10 +34,10 @@ gem install sass
 
 Install Node.js from http://nodejs.org/
 
-- If you get some errors after this it mightbe that your node packages are out of date. 
+- If you get some errors after this it might be that your node packages are out of date. 
 
 ```
-#Try this if you get some poackage errors
+#Try this if you get some package errors
 npm cache clean
 #Followed by
 npm update 
