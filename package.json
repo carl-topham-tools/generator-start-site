@@ -1,6 +1,6 @@
 {
   "name": "generator-start-site",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -19,7 +19,7 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator, website, grunt, yeoman, sass, template"
+    "yeoman-generator", "website", "grunt", "yeoman", "sass", "template", "website template"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
