@@ -1,6 +1,8 @@
 /* Generated for <%= site_name %> */
 
 module.exports = function(grunt) {
+
+    require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
     
     // 1. All configuration goes here
     grunt.initConfig({
@@ -188,23 +190,10 @@ module.exports = function(grunt) {
 
     });//end grunt package configs
 
-    // 3. Where we tell Grunt we plan to use this plug-in.
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-csscss');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-notify');
-
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-usemin');
-
     grunt.registerTask('dist', ['notify:distStart', 'useminPrepare', 'copy', 'concat', 'uglify', 'usemin', 'sass:dist', 'autoprefixer', 'cssmin', 'notify:distDone']);
 
 
-    // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
+    // 3. Where we tell Grunt what to do when we type "grunt" into the terminal.
     grunt.registerTask('default', []);
     
 };
