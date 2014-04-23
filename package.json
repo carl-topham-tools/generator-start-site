@@ -19,7 +19,7 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator", "website", "grunt", "yeoman", "sass", "template", "website template", "html"
+    "yeoman-generator", "website", "grunt", "yeoman", "sass", "template", "website template", "html", "bower"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
