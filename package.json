@@ -18,18 +18,7 @@
   "files": [
     "app"
   ],
-  "keywords": [
-    "yeoman-generator",
-    "yeoman",
-    "generator",
-    "website",
-    "grunt",
-    "sass",
-    "template",
-    "website template",
-    "html",
-    "bower"
-  ],
+  "keywords": [ "yeoman-generator", "yeoman", "generator", "website", "grunt", "sass", "template", "website template", "html", "bower" ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
     "chalk": "~0.4.0"
