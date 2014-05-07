@@ -8,10 +8,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-
         //watch
-
-
         watch: {
           css: {
             files: '../dev/src/scss/**/*.scss',
@@ -20,21 +17,18 @@ module.exports = function(grunt) {
               livereload: true,
             },
           },
-
           html: {
             files: '../dev/**/*.html',
             options: {
               livereload: true,
             },
           },
-
           js: {
-            files: '../dev/static/js/**/*.html',
+            files: '../dev/static/js/**/*.js',
             options: {
               livereload: true,
             },
           },
-
           jade: {
             files: '../dev/src/jade/**/*.jade',
             tasks: ['jade' ],
@@ -42,16 +36,10 @@ module.exports = function(grunt) {
               livereload: true,
             },
           },
-
         },
-
-
         // end watch
 
         //sass
-
-
-
         sass: {                              // Task
             dev: {                            // Target
               options: {                       // Target options
@@ -71,60 +59,43 @@ module.exports = function(grunt) {
               }
             }
           },
-
-
-
         // end sass
 
-
-
         //jade
-
         jade: {
           compile: {
-              options: {
-                  client: false,
-                  pretty: true
-              },
-              files: [ {
-                cwd: "../dev/src/jade/",
-                src: ['**/*.jade', '!**/_*.jade'], //ignore all _jade files
-                dest: "../dev",
-                expand: true,
-                ext: ".html"
-              } ]
+            options: {
+                client: false,
+                pretty: true
+            },
+            files: [ {
+              cwd: "../dev/src/jade/",
+              src: ['**/*.jade', '!**/_*.jade'], //ignore all _jade files
+              dest: "../dev",
+              expand: true,
+              ext: ".html"
+            } ]
           }
         },
-
         //end jade
 
-
-
         //auto prefixer
-
-
         autoprefixer: {
-
-            options: {
-              browsers: ['last 8 version', 'ie 8', 'ie 7']
-            },
-
-            // just prefix the specified file
-            single_file: {
-              options: {
-                // Target-specific options go here.
-              },
-              src: '../dev/static/css/style.css',
-              dest: '../dev/static/css/style.css'
-            }
+          options: {
+            browsers: ['last 8 version', 'ie 8', 'ie 7']
           },
-
-
+          // just prefix the specified file
+          single_file: {
+            options: {
+              // Target-specific options go here.
+            },
+            src: '../dev/static/css/style.css',
+            dest: '../dev/static/css/style.css'
+          }
+        },
        //end auto prefixer
 
-
       //css min
-
       cssmin: {
         minify: {
           expand: true,
@@ -135,29 +106,19 @@ module.exports = function(grunt) {
           report: 'gzip'
         }
       },
-
       // end ccs min
-
-
-
 
       //check using csscss - need right version of ruby!
       csscss: {
-          options: {
-            minMatch: 4,
-            verbose: true,
-            shorthand: false,
-          },
-          dist: {
-            src: ['../dev/static/css/style.css']
-          }
+        options: {
+          minMatch: 4,
+          verbose: true,
+          shorthand: false,
         },
-
-
-
-
-
-
+        dist: {
+          src: ['../dev/static/css/style.css']
+        }
+      },
 
     //Dist production
     copy: {
@@ -186,14 +147,6 @@ module.exports = function(grunt) {
     },
     // end Dist production  
 
-   
-
-
-
-
-
-
-
     //notify
     notify: {
       done: {
@@ -202,42 +155,31 @@ module.exports = function(grunt) {
           message: 'Whatever you were doing is done!', //required
         }
       },
-
       distStart: {
         options: {
           title: '🎁 Prepping for distribution!',  // optional
           message: 'Get ready for the awesome...', //required
         }
       },
-
       distDone: {
         options: {
           title: "<%= like_text %>" ,  // optional
           message: "<%= site_name %> is ready to be distributed 👊", //needed escaping!
         }
       },
-
-
       sassDone: {
         options: {
           title: '🎉 Ta-da!!!' ,  // optional
           message: 'Sass has compiled successfully 😊', //required
         }
       },
-
-
-
-
-
     }
 
+  });//end grunt package configs
 
-    });//end grunt package configs
+  grunt.registerTask('dist', ['notify:distStart', 'jade', 'useminPrepare', 'copy', 'concat', 'uglify', 'usemin', 'sass:dist', 'autoprefixer', 'cssmin', 'notify:distDone']);
 
-    grunt.registerTask('dist', ['notify:distStart', 'jade', 'useminPrepare', 'copy', 'concat', 'uglify', 'usemin', 'sass:dist', 'autoprefixer', 'cssmin', 'notify:distDone']);
-
-
-    // 3. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', []);
+  // 3. Where we tell Grunt what to do when we type "grunt" into the terminal.
+  grunt.registerTask('default', []);
     
 };
