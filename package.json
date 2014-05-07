@@ -1,39 +1,19 @@
 {
-  "name": "generator-start-site",
-  "version": "1.1.0",
-  "description": "Yeoman generator to make a starter site for beginning development quickly and easily using html or Jade templates",
-  "license": "MIT",
-  "main": "app/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Designer023/generator-start-site"
-  },
-  "author": "Carl Topham (https://github.com/Designer023)",
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "files": [
-    "app"
-  ],
-  "keywords": [ "yeoman-generator", "yeoman", "generator", "website", "grunt", "sass", "template", "website template", "html", "bower", "jade" ],
-  "dependencies": {
-    "yeoman-generator": "~0.16.0",
-    "chalk": "~0.4.0"
-  },
+  "name": "Starter",
+  "version": "0.5.1",
   "devDependencies": {
-    "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/Designer023/generator-start-site/issues"
-  },
-  "homepage": "https://github.com/Designer023/generator-start-site",
-  "directories": {
-    "test": "test"
+    "grunt":                       "~0.4.1",
+    "matchdep":                    "^0.3.0",
+    "grunt-contrib-less":          "~0.11.0",
+    "grunt-contrib-watch":         "~0.5.3",
+    "grunt-autoprefixer":          "~0.5.0",
+    "grunt-csscss":                "~0.6.1",
+    "grunt-notify":                "^0.2.20",
+    "grunt-usemin":                "^2.1.0",
+    "grunt-contrib-copy":          "^0.5.0",
+    "grunt-contrib-concat":        "^0.4.0",
+    "grunt-contrib-uglify":        "^0.4.0",
+    "grunt-contrib-cssmin":        "^0.9.0",
+    "grunt-contrib-jade":          "~0.11.0"
   }
 }
