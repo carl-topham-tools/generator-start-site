@@ -21,6 +21,28 @@ module.exports = function(grunt) {
             },
           },
 
+          html: {
+            files: '../dev/**/*.html',
+            options: {
+              livereload: true,
+            },
+          },
+
+          js: {
+            files: '../dev/static/js/**/*.html',
+            options: {
+              livereload: true,
+            },
+          },
+
+          jade: {
+            files: '../dev/src/jade/**/*.jade',
+            tasks: ['jade' ],
+            options: {
+              livereload: true,
+            },
+          },
+
         },
 
 
@@ -53,6 +75,28 @@ module.exports = function(grunt) {
 
 
         // end sass
+
+
+
+        //jade
+
+        jade: {
+          compile: {
+              options: {
+                  client: false,
+                  pretty: true
+              },
+              files: [ {
+                cwd: "../dev/src/jade/",
+                src: ['**/*.jade', '!**/_*.jade'], //ignore all _jade files
+                dest: "../dev",
+                expand: true,
+                ext: ".html"
+              } ]
+          }
+        },
+
+        //end jade
 
 
 
@@ -190,7 +234,7 @@ module.exports = function(grunt) {
 
     });//end grunt package configs
 
-    grunt.registerTask('dist', ['notify:distStart', 'useminPrepare', 'copy', 'concat', 'uglify', 'usemin', 'sass:dist', 'autoprefixer', 'cssmin', 'notify:distDone']);
+    grunt.registerTask('dist', ['notify:distStart', 'jade', 'useminPrepare', 'copy', 'concat', 'uglify', 'usemin', 'sass:dist', 'autoprefixer', 'cssmin', 'notify:distDone']);
 
 
     // 3. Where we tell Grunt what to do when we type "grunt" into the terminal.

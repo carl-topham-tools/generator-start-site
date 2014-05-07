@@ -57,6 +57,15 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
       }
     }
 
+
+    ,{
+    type: 'list',
+    name: 'whichTemplateLanguage',
+    message: 'Would you like to use a templating langauge?',
+    choices: ['no - Regular HTML please', 'Yes - Jade']
+    }
+
+
     ,{
     type: 'list',
     name: 'whichReset',
@@ -90,6 +99,8 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
       } else {
         this.likes = 'hello null';
       }
+
+      this.whichTemplateLanguage = props.whichTemplateLanguage;
 
 
       done();
@@ -143,8 +154,15 @@ var StartSiteGenerator = yeoman.generators.Base.extend({
     
 
 
-    //setup base html files
-    this.template("_index.html", this.nameSpace+"/dev/index.html", context);
+    //setup base html files if uing no templating langauge
+    if (this.whichTemplateLanguage == 'Yes - Jade') {
+      //use Jade
+      this.directory('frameworks/jade', this.nameSpace+'/dev/src/jade');
+    } else {
+      //use html
+      this.template("_index.html", this.nameSpace+"/dev/index.html", context);
+    }
+    
 
   },
 

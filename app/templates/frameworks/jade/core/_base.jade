@@ -1,0 +1,51 @@
+include ../_variables
+  
+doctype html
+html(lang="en", class="no-js")
+  head
+    meta(charset="utf-8")
+
+    block pageTitle
+      title Base Template
+
+    block headerStyles
+      link(rel='stylesheet', href='static/css/style.css', type="text/css")
+    
+    // build:js static/js/pre.js
+    block headerScripts
+      script(src='static/js/header.js', type='text/javascript')
+      script(src='bower_components/modernizr/modernizr.js', type='text/javascript')
+    // endbuild
+
+
+  body
+    block masthead 
+      block branding
+        a Your brand logo and title
+      
+
+
+      block siteNav
+        nav.primary-navigation
+          ul.nav-list
+            li.nav-list__item
+              a(href="#").nav-list__option
+                | I'm a link
+
+
+
+    block content
+      h1.page__title base template content
+      p.page__intro Add a content block in your template to override this template
+
+
+
+    block footer
+      p footer content
+
+
+    // build:js static/js/post.js
+    block footerScripts
+      script(src='bower_components/jquery/jquery.js', type='text/javascript')
+      script(src='static/js/footer.js', type='text/javascript')
+    // endbuild
