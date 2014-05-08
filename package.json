@@ -1,6 +1,6 @@
 {
   "name": "generator-start-site",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Yeoman generator to make a starter site for beginning development quickly and easily using html or Jade templates",
   "license": "MIT",
   "main": "app/index.js",
